@@ -1,0 +1,34 @@
+﻿@{
+}
+
+@model BooksViewModel
+
+<h1 class="text-center">Book List</h1>
+
+@*Loops through each book and adds the information to html dynamically*@
+@foreach (Books b in Model.Books)
+{
+    <div class="card card-outline-primary m-1 p-1">
+        <div class="bg-faded p-1">
+            <h4>
+                @b.Title
+                <span class="badge badge-pill badge-primary" style="float:right">
+                    <small>$@b.Price</small>
+                </span>
+            </h4>
+        </div>
+        <div>
+            <h6>Author: @b.Author</h6>
+            <h6>Publisher: @b.Publisher</h6>
+            <h6>ISBN: @b.Isbn</h6>
+            <h6>@b.PageCount pages</h6>
+        </div>
+        <div class="card-text p-1">@b.Category</div>
+    </div>
+}
+
+@*Styles and creates the page links at the bottom of the page*@
+<div page-model="@Model.PageInfo" page-action="BookList" page-classes-enabled="true"
+     page-class="btn" page-class-normal="btn-outline-dark"
+     page-class-selected="btn-primary" class="btn-group pull-right m-1">
+</div>
