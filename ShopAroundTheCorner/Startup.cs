@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,6 +33,11 @@ namespace ShopAroundTheCorner
             });
 
             services.AddScoped<IBookstoreRepository, EfBookstoreRepository>();
+
+            services.AddRazorPages();
+            // add sessions to services
+            services.AddDistributedMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,14 +57,31 @@ namespace ShopAroundTheCorner
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseSession();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name:"categorypage",
+                    pattern: "{bookCategory}/Page{pageNum}",
+                    defaults: new { Controller = "Home", action = "BookList" });
+
+                endpoints.MapControllerRoute(
+                    name: "page",
+                    pattern: "Page{pageNum}",
+                    defaults: new { Controller = "Home", action = "BookList", pageNum = 1});
+
+                endpoints.MapControllerRoute(
+                    name: "category",
+                    pattern: "{bookCategory}",
+                    defaults: new { Controller = "Home", action = "BookList", pageNum = 1});
+
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapRazorPages();
             });
         }
     }

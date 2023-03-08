@@ -33,8 +33,15 @@ using ShopAroundTheCorner.Models.ViewModels;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "/Users/ashtonpaulsen/Projects/ShopAroundTheCorner/ShopAroundTheCorner/Views/_ViewImports.cshtml"
+using ShopAroundTheCorner.Infrastructure;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"9c6f70a1b7ea6cd181cc1713c0f43816339c92b9", @"/Views/Shared/Error.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"29de9263049201572ccf84c2e6d5ba0a9aba5d3e", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7f13dcbc8d4bad7d5458f747be310e062df9504d", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_Error : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ErrorViewModel>
     {
         #pragma warning disable 1998
