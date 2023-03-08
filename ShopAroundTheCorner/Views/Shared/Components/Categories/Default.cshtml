@@ -3,12 +3,18 @@
 
 @model IEnumerable<string>
 
-<div class="grid gap-2">
-    <a asp-controller="Home" asp-action="BookList" asp-route-bookCategory="" asp-route-pageNum="1" class="btn btn-block btn-outline-secondary">Home</a>
+@*This is where I added my own spin with css and did a dropdown category select*@
+<div class="btn-group text-center" role="group">
+    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Select Book Category
+    </button>
+    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+        <a asp-controller="Home" asp-action="BookList" asp-route-bookCategory="" asp-route-pageNum="1" class="dropdown-item">Home</a>
 
-    @foreach (string cat in Model)
-    {
-        <a asp-controller="Home" asp-action="BookList" asp-route-bookCategory="@cat" asp-route-pageNum="1"
-           class="btn btn-block @(ViewBag.SelectedType == cat ? "btn-primary" : "btn btn-outline-secondary")">@cat</a>
-    }
+        @foreach (string cat in Model)
+        {
+            <a asp-controller="Home" asp-action="BookList" asp-route-bookCategory="@cat" asp-route-pageNum="1"
+               class="dropdown-item @(ViewBag.SelectedType == cat ? "btn-primary" : "")">@cat</a>
+        }
+    </div>
 </div>
