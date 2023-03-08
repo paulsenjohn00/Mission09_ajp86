@@ -3,23 +3,28 @@
 
 @model BooksViewModel
 
+    <div class="text-center">
+        <h2>Book Collection</h2>
+    </div>
 
-    <div class="">
+    <div class="text-center m-3">
         <vc:categories></vc:categories>
     </div>
 
 
-    <div class="">
+    <div class="d-flex justify-content-center align-content-stretch flex-wrap">
         @*Loops through each book and adds the information to html dynamically*@
         @foreach (Books b in Model.Books)
         {
-            <partial name="BookSummary" model="b" />
+            <div class="b-inline">
+                <partial name="BookSummary" model="b" />
+            </div>
         }
 
         @*Styles and creates the page links at the bottom of the page*@
-        <div page-model="@Model.PageInfo" page-action="BookList" page-classes-enabled="true"
-             page-class="btn" page-class-normal="btn-outline-dark"
-             page-class-selected="btn-primary" class="btn-group pull-right m-1">
-        </div>
+        
     </div>
-
+    <div page-model="@Model.PageInfo" page-action="BookList" page-classes-enabled="true"
+         page-class="btn" page-class-normal="btn-outline-dark"
+         page-class-selected="btn-primary" class="btn-group pull-right m-1">
+    </div>
