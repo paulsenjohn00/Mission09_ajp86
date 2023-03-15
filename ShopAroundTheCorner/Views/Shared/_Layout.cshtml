@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ShopAroundTheCorner</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="/lib/font-awesome/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 
@@ -27,6 +28,10 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="BookList">Book Collection</a>
                         </li>
                     </ul>
+                </div>
+                @*creates the cart information with the icon*@
+                <div class="col-6 text-right">
+                    <vc:shopping-cart-summary />
                 </div>
             </div>
         </nav>

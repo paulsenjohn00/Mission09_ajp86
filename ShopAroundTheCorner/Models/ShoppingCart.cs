@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;
 
@@ -9,7 +10,7 @@ namespace ShopAroundTheCorner.Models
 	{
 		public List<ShoppingCartLineItem> Items { get; set; } = new List<ShoppingCartLineItem>();
 
-		public void AddItem(Books book, int qty, double price)
+		public virtual void AddItem(Books book, int qty, double price)
 		{
             ShoppingCartLineItem lineItem = Items
                 .Where(b => b.Book.BookId == book.BookId)
@@ -32,6 +33,18 @@ namespace ShopAroundTheCorner.Models
             }
         }
 
+        // remove single book from cart
+        public virtual void RemoveItem(Books book)
+        {
+            Items.RemoveAll(x => x.Book.BookId == book.BookId);
+        }
+
+        // clear the cart of all contents
+        public virtual void ClearShoppingCart()
+        {
+            Items.Clear();
+        }
+
         public string CalculateTotal()
         {
             CultureInfo culture = new CultureInfo("en-US");
@@ -46,6 +59,7 @@ namespace ShopAroundTheCorner.Models
 
         public class ShoppingCartLineItem
         {
+            [Key]
             public int LineId { get; set; }
             public Books Book { get; set; }
             public int Quantity { get; set; }

@@ -13,28 +13,33 @@ namespace ShopAroundTheCorner.Pages
     {
         private IBookstoreRepository repo { get; set; }
 
-        public CartModel(IBookstoreRepository temp)
-        {
-            repo = temp;
-        }
-
         public ShoppingCart ShoppingCart { get; set; }
         public string ReturnUrl { get; set; }
+
+        public CartModel(IBookstoreRepository temp, ShoppingCart cart)
+        {
+            repo = temp;
+            ShoppingCart = cart;
+        }
 
         public void OnGet(string returnUrl)
         {
             ReturnUrl = returnUrl ?? "/";
-            ShoppingCart = HttpContext.Session.GetJson<ShoppingCart>("ShoppingCart") ?? new ShoppingCart();
         }
 
         public IActionResult OnPost(int bookId, string returnUrl)
         {
             Books b = repo.Books.FirstOrDefault(x => x.BookId == bookId);
 
-            ShoppingCart = HttpContext.Session.GetJson<ShoppingCart>("ShoppingCart") ?? new ShoppingCart();
             ShoppingCart.AddItem(b, 1, b.Price);
 
-            HttpContext.Session.SetJson("ShoppingCart", ShoppingCart);
+            return RedirectToPage(new { ReturnUrl = returnUrl });
+        }
+
+        // function associated with the remove button
+        public IActionResult OnPostRemove(int bookId, string returnUrl)
+        {
+            ShoppingCart.RemoveItem(ShoppingCart.Items.First(x => x.Book.BookId == bookId).Book);
 
             return RedirectToPage(new { ReturnUrl = returnUrl });
         }

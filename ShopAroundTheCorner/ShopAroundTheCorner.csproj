@@ -22,6 +22,8 @@
     <None Remove="Views\Shared\Components\" />
     <None Remove="Views\Shared\Components\Categories\" />
     <None Remove="Pages\" />
+    <None Remove="Views\Purchase\" />
+    <None Remove="Views\Shared\Components\ShoppingCartSummary\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\ViewModels\" />
@@ -30,5 +32,11 @@
     <Folder Include="Views\Shared\Components\" />
     <Folder Include="Views\Shared\Components\Categories\" />
     <Folder Include="Pages\" />
+    <Folder Include="Views\Purchase\" />
+    <Folder Include="wwwroot\lib\font-awesome\" />
+    <Folder Include="Views\Shared\Components\ShoppingCartSummary\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\lib\font-awesome\" />
   </ItemGroup>
 </Project>
